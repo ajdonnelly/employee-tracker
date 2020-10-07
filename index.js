@@ -1,16 +1,16 @@
-const inquirer = require("inquirer.prompt");
+const { prompt } = require("inquirer");
 const db = require("./db");
 require("console.table");
 
-runPrompts();
-// run();
+// runPrompts();
+run();
 
-// function run() {
-//     runPrompts();
-// }
+function run() {
+    runPrompts();
+}
 
 function runPrompts() {
-inquirer.prompt([
+prompt([
 {
   type: 'list',
   name: 'choice',
@@ -105,8 +105,8 @@ inquirer.prompt([
     }
   ]
 }
-]).then((res) => {
-  var selection = res.choice;
+]).then(answers => {
+  let selection = answers.selection;
   switch (selection) {
     case 'emp':
       emp();
@@ -176,7 +176,7 @@ db.getDepts()
         value: id
       }));
 
-      inquirer.prompt([
+      prompt([
         {
           type: "list",
           name: "departmentId",
@@ -206,7 +206,7 @@ function empMan() {
           value: id
         }));
 //allow them to choose a manager and then pull the 
-        inquirer.prompt([
+        prompt([
             {
             type: "list",
             name: "managerId",
@@ -230,7 +230,7 @@ function empMan() {
 }
 //Add an Employee
 function addEmp(){
-    inquirer.prompt([
+    prompt([
         {
           name: "first_name",
           message: "Please provide first name of the employee you would like to add"
@@ -252,7 +252,7 @@ function addEmp(){
             value: id
           }));
 
-          inquirer.prompt({
+          prompt({
             type: "list",
             name: "roleId",
             message: "Please give the employee's role?",
@@ -271,7 +271,7 @@ function addEmp(){
             
                   selectManager.unshift({ name: "None", value: null });
                   
-                  inquirer.prompt({
+                  prompt({
                     type: "list",
                     name: "managerId",
                     message: "Who manages this employee?",
@@ -307,7 +307,7 @@ db.getEmp()
                     value: id
                   })); 
 
-                  inquirer.prompt([
+                  prompt([
                     {
                       type: "list",
                       name: "employeeId",
@@ -333,7 +333,7 @@ function updateEmpRole() {
                     value: id
                   })); 
 
-                  inquirer.prompt([
+                  prompt([
                     {
                       type: "list",
                       name: "employeeId",
@@ -352,7 +352,7 @@ function updateEmpRole() {
                                 value: id
                               }));
 
-                              inquirer.prompt([
+                              prompt([
                                   {
                                     type: "list",
                                     name: "roleId",
@@ -380,7 +380,7 @@ function updateEmpMan(){
         value: id
       })); 
 
-      inquirer.prompt([
+      prompt([
         {
           type: "list",
           name: "employeeId",
@@ -398,7 +398,7 @@ function updateEmpMan(){
                 value: id
               }));
 
-              inquirer.prompt([
+              prompt([
                 {
                   type: "list",
                   name: "managerId",
@@ -434,7 +434,7 @@ function addRole(){
         value: id
       }));
  //prompt user as to which department to add a role to
-      inquirer.prompt([
+      prompt([
         {
             name: "title",
             message: "Provide a new title."
@@ -493,7 +493,7 @@ function depts(){
 }
 //Add a department
 function addDepts(){
-    inquirer.prompt([
+    prompt([
         {
           name: "name",
           message: "Please provide the name of the new Department?"
@@ -516,7 +516,7 @@ function delDept(){
         value: id
       }));
 
-      inquirer.prompt({
+      prompt({
         type: "list",
         name: "departmentId",
         message:
