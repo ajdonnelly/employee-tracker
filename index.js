@@ -13,7 +13,7 @@ function runPrompts() {
 prompt([
 {
   type: 'list',
-  name: 'choice',
+  name: 'selection',
   message: 'What would you like to do?',
   choices: [
     //view all employees, 
@@ -221,7 +221,7 @@ function empMan() {
         if (employees.length === 0) {
             console.log("No one reports to this person");
           } else {
-            console.log(employees);
+            console.table(employees);
           }
         })
         .then( () => runPrompts())
@@ -414,7 +414,7 @@ function updateEmpMan(){
         })
     })
 }
-//Show all roles
+//View all roles
 function roles(){
     db.findRoles()
     .then(([rows]) => {
@@ -508,7 +508,7 @@ function addDepts(){
 }
 //Delete a Department
 function delDept(){
-    db.getDeparts()
+    db.getDepts()
     .then(([rows]) => {
       let departments = rows;
       const selectDepartment = departments.map(({ id, name }) => ({
